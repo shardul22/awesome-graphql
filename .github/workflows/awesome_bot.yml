@@ -6,18 +6,18 @@ on:
   pull_request:
     branches: ["*"]
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * 0" # Runs every Sunday at midnight UTC. You can customize the schedule using cron syntax.
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Ruby 2.6
+      - uses: actions/checkout@v4
+      - name: Set up Ruby 3.3
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 3.3
       - name: Checks
         run: |
           gem install awesome_bot
-          awesome_bot README.md --allow-ssl --allow-dupe --allow-redirect --allow 429 --white-list twitter.com,roadmap.sh,stackoverflow.com
+          awesome_bot README.md --allow-ssl --allow-dupe --allow-redirect --allow 429 --white-list x.com,stackoverflow.com,reddit.com,drupal.org,vimeo.com,escape.tech
